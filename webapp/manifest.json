@@ -1,0 +1,108 @@
+{
+    "_version": "1.21.0",
+    "sap.app": {
+        "id": "sap.ui.demo.bulletinboard",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [""],
+            "fallbackLocale": ""
+        },
+        "title": "",
+        "description": "",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "resources": "resources.json",
+        "dataSources": {
+            "mainService": {
+                "uri": "https://localhost:44311/api/NotaFiscal/",
+                "type": "JSON",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        
+        "sourceTemplate": {
+            "id": "@sap/ux-app-migrator:freestyle",
+            "version": "1.12.5",
+            "toolsId": "691eb26b-b45d-49a9-b3d1-7001b24e9509"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://task"
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "sap.ui.demo.bulletinboard.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.98.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "models": {
+            "": {
+                "dataSource": "mainService",
+                "settings": {
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading"
+                    }
+                }
+            },
+            "Nota": {
+                "dataSource": "mainService",
+                "settings": {
+                    "metadataUrlParams": {
+                        "sap-documentation": "heading"
+                    }
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "type": "View",
+                "viewType": "XML",
+                "controlId": "app",
+                "controlAggregation": "pages",  
+                "async": true
+            },
+            "routes": [       
+                {
+                    "pattern": "app",
+                    "name": "app",
+                    "target": "app"
+                },                            
+                {
+                    "pattern": "api/NotaFiscal",
+                    "name": "notaFiscal",
+                    "target": "app" 
+                }
+            ],
+            "targets": {                  
+                "app": {
+                    "name": "App",
+                    "id": "App",
+                    "viewName": "sap.ui.demo.bulletinboard.view.App",
+                    "viewLevel": 1
+                }
+            }               
+        }        
+    }
+}

@@ -1,0 +1,50 @@
+<mvc:View
+   controllerName="sap.ui.demo.bulletinboard.controller.App"
+   displayBlock="true"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:core="sap.ui.core">
+
+   <Page title="Criar Nova Nota Fiscal" id="newNotePage" class="sapUiResponsiveContentPadding">
+      <VBox class="customHeight">
+         <Input placeholder="Número da Nota" value="{/NumeroNota}" type="Number">
+         </Input>
+         <Input placeholder="Valor" value="{/Valor}" type="Number">
+         </Input>
+         <Input placeholder="Nome do Fornecedor" value="{/FornecedorNome}" />
+         <Input placeholder="Nome do Cliente" value="{/ClienteNome}" />
+
+         <Button text="Criar Nota Fiscal" press="onCriarNotaFiscalButtonPress" />
+      </VBox>
+   </Page>
+
+   <Page title="Lista de Notas Fiscais">
+      <content>
+         <VBox>
+            <SearchField id="searchField" width="100%" placeholder="Pesquisar" liveChange="onSearch" />
+            <Table id="idNotasList" items="{/}">
+               <columns>
+                  <Column>
+                     <Text text="Número da Nota" />
+                  </Column>
+                  <Column>
+                     <Text text="Valor" />
+                  </Column>
+                  <Column>
+                     <Text text="Detalhes" />
+                  </Column>
+               </columns>
+               <items>
+                  <ColumnListItem>
+                     <cells>
+                        <Text text="{numeroNota}" />
+                        <Text text="{ path: 'valor', formatter: '.formatCurrency' }" />
+                        <Button text="Detalhes" press="onDetalhesPress" />
+                     </cells>
+                  </ColumnListItem>
+               </items>
+            </Table>
+         </VBox>
+      </content>
+   </Page>
+</mvc:View>
